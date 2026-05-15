@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edwin Prayogi | CEO UMKM</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold: #F5A623;
+    --gold-light: #FFD07A;
+    --dark: #0F0E0C;
+    --dark2: #1A1915;
+    --dark3: #252420;
+    --white: #FAF8F3;
+    --muted: #9C9A94;
+  }
+
+  body {
+    background: var(--dark);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px 60px;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* Background texture */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(245,166,35,0.15) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 80% 80%, rgba(245,166,35,0.07) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 420px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Profile */
+  .profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 32px;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .avatar-wrap {
+    position: relative;
+    margin-bottom: 16px;
+  }
+
+  .avatar {
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    background: var(--dark3);
+    border: 2.5px solid var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Syne', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--gold);
+    letter-spacing: -1px;
+  }
+
+  .badge {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    background: var(--gold);
+    color: var(--dark);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 20px;
+    white-space: nowrap;
+    font-family: 'DM Sans', sans-serif;
+    letter-spacing: 0.3px;
+  }
+
+  .name {
+    font-family: 'Syne', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--white);
+    letter-spacing: -0.5px;
+    margin-bottom: 6px;
+  }
+
+  .tagline {
+    font-size: 13.5px;
+    color: var(--muted);
+    text-align: center;
+    line-height: 1.5;
+    max-width: 280px;
+  }
+
+  .tagline span {
+    color: var(--gold-light);
+    font-weight: 600;
+  }
+
+  /* Divider */
+  .divider {
+    width: 40px;
+    height: 2px;
+    background: var(--gold);
+    margin: 20px auto;
+    opacity: 0.5;
+    border-radius: 2px;
+  }
+
+  /* Section label */
+  .section-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+    padding-left: 4px;
+  }
+
+  /* Links */
+  .links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+
+  .link-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--dark2);
+    border: 1px solid rgba(245,166,35,0.15);
+    border-radius: 14px;
+    padding: 14px 18px;
+    text-decoration: none;
+    color: var(--white);
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .link-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(245,166,35,0.06) 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .link-card:hover {
+    border-color: rgba(245,166,35,0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  }
+
+  .link-card:hover::before {
+    opacity: 1;
+  }
+
+  .link-card.featured {
+    background: linear-gradient(135deg, var(--gold) 0%, #E8920A 100%);
+    border-color: transparent;
+    color: var(--dark);
+  }
+
+  .link-card.featured .link-desc {
+    color: rgba(0,0,0,0.6);
+  }
+
+  .link-card.featured .link-arrow {
+    color: var(--dark);
+    opacity: 0.6;
+  }
+
+  .link-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: rgba(245,166,35,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  .link-card.featured .link-icon {
+    background: rgba(0,0,0,0.15);
+  }
+
+  .link-text {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .link-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 14.5px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 2px;
+  }
+
+  .link-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.3;
+  }
+
+  .link-arrow {
+    font-size: 16px;
+    color: var(--gold);
+    flex-shrink: 0;
+    opacity: 0.7;
+  }
+
+  /* Animation delays */
+  .link-card:nth-child(1) { animation-delay: 0.1s; }
+  .link-card:nth-child(2) { animation-delay: 0.2s; }
+  .link-card:nth-child(3) { animation-delay: 0.3s; }
+  .link-card:nth-child(4) { animation-delay: 0.4s; }
+  .link-card:nth-child(5) { animation-delay: 0.5s; }
+
+  /* Socials */
+  .socials {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 8px;
+    animation: fadeUp 0.6s 0.6s ease both;
+  }
+
+  .social-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--dark2);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 30px;
+    padding: 8px 14px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--muted);
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .social-btn:hover {
+    color: var(--white);
+    border-color: rgba(255,255,255,0.2);
+  }
+
+  /* Footer */
+  .footer {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 11px;
+    color: rgba(255,255,255,0.2);
+    animation: fadeUp 0.6s 0.7s ease both;
+  }
+
+  .footer span {
+    color: var(--gold);
+    opacity: 0.5;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .profile { animation-delay: 0s; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Profile -->
+  <div class="profile">
+    <div class="avatar-wrap">
+      <div class="avatar">EP</div>
+      <div class="badge">CEO UMKM</div>
+    </div>
+    <div class="name">Edwin Prayogi</div>
+    <div class="tagline">
+      Bantu UMKM naik kelas pakai <span>data & AI</span><br>
+      Bukan feeling — tapi keputusan yang tepat
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Featured Link -->
+  <div class="section-label">🔥 Produk Utama</div>
+  <div class="links">
+    <a href="https://ecreative.myr.id/app/cekmodal-hitung-untung-umkm" class="link-card featured" target="_blank">
+      <div class="link-icon">📊</div>
+      <div class="link-text">
+        <div class="link-title">CekModal — Hitung Untung UMKM</div>
+        <div class="link-desc">Hitung modal & harga jual yang tepat. Bayar sekali, pakai selamanya.</div>
+      </div>
+      <div class="link-arrow">→</div>
+    </a>
+  </div>
+
+  <!-- Content Links -->
+  <div class="section-label">📲 Ikuti Saya</div>
+  <div class="links">
+    <a href="https://www.instagram.com/ceoumkm" class="link-card" target="_blank">
+      <div class="link-icon">📸</div>
+      <div class="link-text">
+        <div class="link-title">@ceoumkm</div>
+        <div class="link-desc">Edukasi UMKM, data & AI untuk naik kelas</div>
+      </div>
+      <div class="link-arrow">→</div>
+    </a>
+
+    <a href="https://www.instagram.com/cekmodal.id" class="link-card" target="_blank">
+      <div class="link-icon">🧮</div>
+      <div class="link-text">
+        <div class="link-title">@cekmodal.id</div>
+        <div class="link-desc">Update fitur, tips hitung modal & testimoni</div>
+      </div>
+      <div class="link-arrow">→</div>
+    </a>
+
+    <a href="https://www.instagram.com/jaikopi.id" class="link-card" target="_blank">
+      <div class="link-icon">☕</div>
+      <div class="link-text">
+        <div class="link-title">@jaikopi.id</div>
+        <div class="link-desc">Warung kopi yang berkolaborasi dengan sistem AI</div>
+      </div>
+      <div class="link-arrow">→</div>
+    </a>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    Dari <span>feeling</span> ke data — UMKM Indonesia naik kelas 🇮🇩
+  </div>
+
+</div>
+</body>
+</html>
